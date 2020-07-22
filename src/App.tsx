@@ -51,11 +51,10 @@ function App() {
   }
   return (
     <div className='app'>
-      <div>Quiz App</div>
-      {!start && !currentQuestion?<button onClick={startQuiz}>Start Quiz</button>:null}
-      {selectedAns && currentQuestion === TOTAL_Qs-1?<button onClick={startQuiz}>Restart Quiz</button>:null}
-      {start?<div>Score: {score}</div>:null}
-      {isLoading?<p>Loading</p>:null}
+      <div className='topTitle'>Quizzer</div>
+      {!start && !currentQuestion?<button className='btn' onClick={startQuiz}>Start Quiz</button>:null}
+      {start?<div className='score'>Score: {score}</div>:null}
+      {isLoading?<p style={{color:'white'}}>Loading...</p>:null}
       {start?
       <div className='questionCard'>
         <div><b>Question : {currentQuestion+1}/{TOTAL_Qs}</b></div>
@@ -64,8 +63,11 @@ function App() {
       correctAns={questions[currentQuestion].correct_answer} setScore={setScore} score={score}/></div>:null
       }
       {selectedAns && currentQuestion !== TOTAL_Qs-1?
-      <button onClick={showNext}>Next</button>:null
+      <button onClick={showNext} className='btn'>Next</button>:null
       }
+      {selectedAns && currentQuestion === TOTAL_Qs-1?
+      <div><div style={{color:'white'}}>Quiz Over!</div>
+        <button onClick={startQuiz} className='btn'>Restart Quiz</button></div>:null}
     </div>
   );
 }

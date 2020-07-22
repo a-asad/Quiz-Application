@@ -30,7 +30,6 @@ function App() {
   const [questions, setQuestions] = useState<Question[]>([])
   const [selectedAns, setSelectedAns] = useState('');
   const [score, setScore] = useState(0);
-  const [quizOver, setQuizOver] = useState(false);
 
   function startQuiz()
   {
@@ -42,7 +41,6 @@ function App() {
         setQuestions(results);
         setisLoading(false);
         setStart(true);
-        setQuizOver(false);
         setScore(0);
         setCurrentQuestion(0);
         setSelectedAns("");

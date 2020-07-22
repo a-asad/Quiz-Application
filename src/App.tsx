@@ -79,7 +79,7 @@ function App() {
       {!start?<div className='optionsBox'>
         <form>
           <div>Number of Questions:</div>
-          <input className='formElement' type='number' min='5' defaultValue={totalQuestions} onChange={setTotal} required={true}></input>
+          <input className='formElement' type='number' defaultValue={totalQuestions} onChange={setTotal} required={true}></input>
           <div>Difficulty:</div>
           <select className='formElement' defaultValue={difficulty} onChange={setdifficulty}>
             <option value='easy'>Easy</option>

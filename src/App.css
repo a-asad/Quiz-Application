@@ -7,7 +7,6 @@
   text-align: center;
   background-color: rgba(240,240,240,0.2);
   color: white;
-
 }
 
 body{
@@ -40,14 +39,14 @@ body{
 .formElement{
   width: 100%;
   outline: none;
-  padding: 5px;
+  padding: 8px;
   border-radius: 5px;
   border: none;
   margin: 5px 0px 5px 0px;
 }
 
 input[type=number]{
-  width: 290px;
+  width: 285px;
 }
 
 .optionsBox{
@@ -70,6 +69,17 @@ input[type=number]{
   border-radius: 5px;
   margin-top: 10px;
   outline: none;
+}
+
+.scoreCard{
+  margin: auto;
+  margin-top: 10px;
+  width: fit-content;
+  padding: 5px 40px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: rgba(240,240,240,0.2);
+  color: white;
 }
 
 .questionCard button{

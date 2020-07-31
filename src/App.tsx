@@ -32,6 +32,7 @@ function App() {
   const [totalQuestions, setTotalQuestions] = useState(10);
   const [category, setCategory] = useState('9');
   const [difficulty, setDifficulty] = useState('easy');
+  const [isContinued, setIsContinued] = useState(false);
   function startQuiz()
   {
     (async function()
@@ -54,10 +55,15 @@ function App() {
   }
   function restartQuiz()
   {
-    setStart(false);
     setScore(0);
-    setCurrentQuestion(0);
+    setIsContinued(false);
+  }
+  function doContinue()
+  {
+    setStart(false);
+    setIsContinued(true);
     setSelectedAns("");
+    setCurrentQuestion(0);
   }
   function setTotal(e:React.ChangeEvent<HTMLInputElement>)
   {
@@ -76,8 +82,8 @@ function App() {
     <div className='app'>
       <div className='topTitle'>Quizzer</div>
       {start?<div className='score'>Score: {score}</div>:null}
-      {!start?<div className='optionsBox'>
-        <form>
+      {!start && !isContinued?<div className='optionsBox'>
+        <div>
           <div>Number of Questions:</div>
           <input className='formElement' type='number' defaultValue={totalQuestions} onChange={setTotal} required={true}></input>
           <div>Difficulty:</div>
@@ -113,10 +119,10 @@ function App() {
             <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
             <option value="32">Entertainment: Cartoon &amp; Animations</option>
           </select>
-          </form>
+          </div>
         </div>:null}
-
-      {!start && !currentQuestion?<button className='btn' onClick={startQuiz}>Start Quiz</button>:null}
+      
+      {!start && !isContinued && !currentQuestion?<button className='btn' onClick={startQuiz}>Start Quiz</button>:null}
       {isLoading?<p style={{color:'white'}}>Loading...</p>:null}
       {start?
       <div className='questionCard'>
@@ -128,9 +134,15 @@ function App() {
       {selectedAns && currentQuestion !== totalQuestions-1?
       <button onClick={showNext} className='btn'>Next</button>:null
       }
-      {start && selectedAns && currentQuestion === totalQuestions-1?
-      <div><div style={{color:'white'}}>Quiz Over!</div>
-        <button onClick={restartQuiz} className='btn'>Restart Quiz</button></div>:null}
+      {!isContinued && selectedAns && currentQuestion === totalQuestions-1?
+        <button onClick={doContinue} className='btn'>Continue</button>:null}
+        {isContinued?<div>
+          <div className='scoreCard'>
+          <h2>Quiz Over!</h2>
+          <h3>Your Score: {score}</h3>
+          </div>
+          <button onClick={restartQuiz} className='btn'>Restart Quiz</button>
+        </div>:null}
     </div>
   );
 }
